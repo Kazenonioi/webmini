@@ -36,6 +36,16 @@ impl HttpConn for TcpStream {
         Ok(())
     }
     fn write_body_from_file(&mut self, path: &str) -> Result<(), Box<dyn Error>> {
+        // Old implementation
+        // let mut f = File::open(path)?;
+        // let mut buf = [0; 1024];
+        // loop {
+        //     let size = f.read(&mut buf)?;
+        //     self.write(&buf[0..size])?;
+        //     if size < buf.len() {
+        //         break;
+        //     }
+        // }
         self.write(&fs::read(path)?)?;
         Ok(())
     }
@@ -70,20 +80,3 @@ pub fn handle_request(cfg: Arc<Config>, mut stream: TcpStream) -> Result<(), Box
 
     Ok(())
 }
-
-
-
-    // Old implementation
-    // let mut path = String::from(root) + req.get_url();
-    // if req.get_url() == &"/".to_string() {
-    //     path = path + "index.html";
-    // }
-    // let mut f = File::open(path)?;
-    // let mut buf = [0; 1024];
-    // loop {
-    //     let size = f.read(&mut buf)?;
-    //     stream.write(&buf[0..size])?;
-    //     if size < buf.len() {
-    //         break;
-    //     }
-    // }

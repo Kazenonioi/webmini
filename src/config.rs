@@ -3,7 +3,6 @@ use std::fs::File;
 use std::{fs, error::Error};
 use std::io::{Read};
 
-#[derive(Debug)]
 pub struct Config {
     pub error_log: String,
     pub access_log: String, 
@@ -51,15 +50,4 @@ impl Config {
         Ok(conf)
     }
 
-}
-
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn build_config() {
-        println!("{:?}", Config::build("/home/jingcheng/.webserver"));
-    }
 }
