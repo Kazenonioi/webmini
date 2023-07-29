@@ -39,6 +39,7 @@ fn main() {
 
 fn run(cfg: Arc<Config>) -> Result<(), Box<dyn Error>> {
     let listener = TcpListener::bind(String::from(&cfg.ip) + ":" + cfg.listen.to_string().as_str())?;
+    println!("Listening on {}", String::from(&cfg.ip) + ":" + cfg.listen.to_string().as_str());
     let mut pool = ThreadPool::new(cfg.worker_connections);
     for stream in listener.incoming() {
         let tcfg = Arc::clone(&cfg);
