@@ -1,4 +1,4 @@
-# webmini
+# Webmini
 
 A simple web server.
 
@@ -10,7 +10,7 @@ webmini [configfile]
 
 config file template: webmini.conf
 
-## TODO
+## Todo
 
 - Add multi-server support.
 
